@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModaVista - Preview Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'luxury': {
+                            'dark': '#0a0a0a',
+                            'gray': '#1a1a1a',
+                            'light-gray': '#2a2a2a',
+                            'white': '#fafafa',
+                            'accent': '#e11d48',
+                            'accent-light': '#f43f5e',
+                        }
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        .hero-bg {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+        }
+        
+        .floating-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(225, 29, 72, 0.3);
+        }
+        
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-luxury-dark text-luxury-white font-sans">
+    <!-- Header -->
+    <header class="fixed top-0 w-full z-50 bg-luxury-dark/90 backdrop-blur-md border-b border-luxury-light-gray">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <h1 class="text-2xl font-bold text-luxury-accent">ModaVista</h1>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#inicio" class="text-gray-300 hover:text-white transition-colors">Inicio</a>
+                    <a href="#productos" class="text-gray-300 hover:text-white transition-colors">Productos</a>
+                    <a href="#coleccion" class="text-gray-300 hover:text-white transition-colors">Colección</a>
+                    <a href="#contacto" class="text-gray-300 hover:text-white transition-colors">Contacto</a>
+                </div>
+                <button class="bg-luxury-accent hover:bg-luxury-accent-light text-white px-6 py-2 transition-all hover:scale-105">
+                    Explorar
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="hero-bg absolute inset-0"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30"></div>
+        
+        <!-- Floating Elements -->
+        <div class="absolute inset-0">
+            <div class="floating-animation absolute top-1/4 left-10 w-2 h-2 bg-luxury-accent rounded-full opacity-30"></div>
+            <div class="floating-animation absolute top-1/3 right-20 w-1 h-1 bg-white rounded-full opacity-50" style="animation-delay: 0.5s;"></div>
+            <div class="floating-animation absolute bottom-1/4 left-1/4 w-3 h-3 bg-luxury-accent-light rounded-full opacity-20" style="animation-delay: 1s;"></div>
+            <div class="floating-animation absolute top-1/2 right-1/3 w-1 h-1 bg-white rounded-full opacity-40" style="animation-delay: 1.5s;"></div>
+        </div>
+
+        <div class="relative z-20 text-center max-w-4xl mx-auto px-6 fade-in">
+            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+                ModaVista
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-200 mb-8 max-w-2xl mx-auto leading-relaxed">
+                Donde la elegancia se encuentra con la innovación. 
+                Descubre una nueva dimensión de la moda digital.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button class="bg-luxury-accent hover:bg-luxury-accent-light text-white px-8 py-4 text-lg transition-all hover:scale-105">
+                    Explorar Colección
+                </button>
+                <button class="border border-white text-white hover:bg-white hover:text-black px-8 py-4 text-lg transition-all">
+                    Ver Video
+                </button>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
+            <div class="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
+                <div class="w-1 h-3 bg-white rounded-full mt-2 animate-bounce"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="productos" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="scroll-reveal text-4xl md:text-6xl font-bold text-white mb-6">
+                    Productos Destacados
+                </h2>
+                <p class="scroll-reveal text-gray-300 text-lg max-w-2xl mx-auto">
+                    Descubre nuestra selección de piezas premium, cada una diseñada para redefinir tu estilo personal.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Product Card 1 -->
+                <div class="scroll-reveal bg-luxury-gray rounded-sm overflow-hidden hover-lift">
+                    <div class="aspect-[3/4] bg-gradient-to-br from-luxury-light-gray to-luxury-gray relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-luxury-accent/20 to-luxury-accent-light/20"></div>
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-luxury-accent text-white px-3 py-1 text-sm font-medium">Abrigos</span>
+                        </div>
+                        <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 opacity-0 hover:opacity-100 transition-all">
+                            <button class="bg-white text-black px-6 py-2 text-sm font-medium hover:bg-luxury-accent hover:text-white">
+                                Ver Detalles
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-white text-xl font-semibold mb-2 hover:text-luxury-accent transition-colors">
+                            Chaqueta de Cuero Eternia
+                        </h3>
+                        <p class="text-gray-400 text-sm mb-4">
+                            Una chaqueta de cuero genuino para un estilo audaz e intemporal.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-luxury-accent text-lg font-bold">€299.99</span>
+                            <div class="flex space-x-2">
+                                <button class="w-8 h-8 border border-gray-600 rounded-full flex items-center justify-center hover:border-luxury-accent">
+                                    ❤️
+                                </button>
+                                <button class="w-8 h-8 border border-gray-600 rounded-full flex items-center justify-center hover:border-luxury-accent">
+                                    💬
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card 2 -->
+                <div class="scroll-reveal bg-luxury-gray rounded-sm overflow-hidden hover-lift">
+                    <div class="aspect-[3/4] bg-gradient-to-br from-luxury-light-gray to-luxury-gray relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-luxury-accent/20 to-luxury-accent-light/20"></div>
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-luxury-accent text-white px-3 py-1 text-sm font-medium">Vestidos</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-white text-xl font-semibold mb-2 hover:text-luxury-accent transition-colors">
+                            Vestido de Seda Lunar
+                        </h3>
+                        <p class="text-gray-400 text-sm mb-4">
+                            Un vestido de seda fluida que captura la elegancia de la luna.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-luxury-accent text-lg font-bold">€189.99</span>
+                            <div class="flex space-x-2">
+                                <button class="w-8 h-8 border border-gray-600 rounded-full flex items-center justify-center hover:border-luxury-accent">
+                                    ❤️
+                                </button>
+                                <button class="w-8 h-8 border border-gray-600 rounded-full flex items-center justify-center hover:border-luxury-accent">
+                                    💬
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card 3 -->
+                <div class="scroll-reveal bg-luxury-gray rounded-sm overflow-hidden hover-lift">
+                    <div class="aspect-[3/4] bg-gradient-to-br from-luxury-light-gray to-luxury-gray relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-luxury-accent/20 to-luxury-accent-light/20"></div>
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-luxury-accent text-white px-3 py-1 text-sm font-medium">Blazers</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-white text-xl font-semibold mb-2 hover:text-luxury-accent transition-colors">
+                            Blazer Minimalista
+                        </h3>
+                        <p class="text-gray-400 text-sm mb-4">
+                            Un blazer de corte perfecto que combina sofisticación y modernidad.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-luxury-accent text-lg font-bold">€159.99</span>
+                            <div class="flex space-x-2">
+                                <button class="w-8 h-8 border border-gray-600 rounded-full flex items-center justify-center hover:border-luxury-accent">
+                                    ❤️
+                                </button>
+                                <button class="w-8 h-8 border border-gray-600 rounded-full flex items-center justify-center hover:border-luxury-accent">
+                                    💬
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collection Section -->
+    <section id="coleccion" class="py-20 bg-luxury-gray">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="scroll-reveal text-4xl md:text-6xl font-bold text-white mb-6">
+                    Colección Premium
+                </h2>
+                <p class="scroll-reveal text-gray-300 text-lg max-w-2xl mx-auto">
+                    Cada pieza de nuestra colección está diseñada para potenciar tu estilo único con materiales de la más alta calidad.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="scroll-reveal group cursor-pointer">
+                    <div class="relative overflow-hidden rounded-sm aspect-square bg-gradient-to-br from-luxury-accent to-luxury-accent-light opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-6 left-6">
+                            <h3 class="text-white text-xl font-semibold">Elegancia</h3>
+                            <p class="text-gray-200">Piezas atemporales</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="scroll-reveal group cursor-pointer">
+                    <div class="relative overflow-hidden rounded-sm aspect-square bg-gradient-to-br from-gray-600 to-gray-800 opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-6 left-6">
+                            <h3 class="text-white text-xl font-semibold">Modernidad</h3>
+                            <p class="text-gray-200">Diseño contemporáneo</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="scroll-reveal group cursor-pointer">
+                    <div class="relative overflow-hidden rounded-sm aspect-square bg-gradient-to-br from-luxury-light-gray to-luxury-gray opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-6 left-6">
+                            <h3 class="text-white text-xl font-semibold">Exclusividad</h3>
+                            <p class="text-gray-200">Piezas únicas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="py-20">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="scroll-reveal text-4xl md:text-6xl font-bold text-white mb-6">
+                Conecta con Nosotros
+            </h2>
+            <p class="scroll-reveal text-gray-300 text-lg mb-12 max-w-2xl mx-auto">
+                Descubre la moda del futuro. Únete a nuestra comunidad de estilo.
+            </p>
+            <div class="scroll-reveal flex flex-col sm:flex-row gap-4 justify-center">
+                <button class="bg-luxury-accent hover:bg-luxury-accent-light text-white px-8 py-3 transition-all hover:scale-105">
+                    Suscribirse
+                </button>
+                <button class="border border-luxury-accent text-luxury-accent hover:bg-luxury-accent hover:text-white px-8 py-3 transition-all">
+                    Contactar
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-luxury-dark border-t border-luxury-light-gray mt-20">
+        <div class="container mx-auto px-6 py-12">
+            <div class="text-center">
+                <h3 class="text-2xl font-bold text-white mb-4">ModaVista</h3>
+                <p class="text-gray-300 mb-6 max-w-md mx-auto">
+                    Redefiniendo la experiencia de moda digital con elegancia, innovación y diseño premium.
+                </p>
+                <p class="text-gray-400">
+                    © 2025 ModaVista. Desarrollado con ❤️ por MiniMax Agent.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll reveal animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add some interactivity
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('🎨 ModaVista Demo - Animaciones activadas');
+        });
+    </script>
+</body>
+</html>

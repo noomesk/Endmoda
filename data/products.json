@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "name": "Chaqueta de Cuero Eternia",
+    "category": "Abrigos",
+    "price": 299.99,
+    "imageUrl": "/images/jacket-1.jpg",
+    "description": "Una chaqueta de cuero genuino para un estilo audaz e intemporal. Elaborada con los mejores materiales para durar generaciones.",
+    "features": ["Cuero 100% genuino", "Cierre frontal de cremallera", "Bolsillos laterales", "Forro interior suave", "Cremalleras premium YKK"]
+  },
+  {
+    "id": 2,
+    "name": "Vestido de Seda Lunar",
+    "category": "Vestidos",
+    "price": 189.99,
+    "imageUrl": "/images/dress-1.jpg",
+    "description": "Un vestido de seda fluida que captura la elegancia de la luna. Perfecto para ocasiones especiales.",
+    "features": ["100% seda natural", "Corte favorecedor", "Manga larga ajustada", "Cierre discreto en la espalda", "Diseño atemporal"]
+  },
+  {
+    "id": 3,
+    "name": "Blazer Minimalista",
+    "category": "Blazers",
+    "price": 159.99,
+    "imageUrl": "/images/blazer-1.jpg",
+    "description": "Un blazer de corte perfecto que combina sofisticación y modernidad. La pieza clave para cualquier guardarropa profesional.",
+    "features": ["Lana premium", "Corte slim fit", "Botones forrados", "Bolsa interior", "Secado en seco únicamente"]
+  },
+  {
+    "id": 4,
+    "name": "Pantalones de Lino Estival",
+    "category": "Pantalones",
+    "price": 89.99,
+    "imageUrl": "/images/pants-1.jpg",
+    "description": "Pantalones de lino fresco y cómodo, perfectos para los días de verano. Transpirables y elegantes.",
+    "features": ["100% lino natural", "Cintura alta", "Bolsillos frontales y traseros", "Ajuste relajado", "Fácil cuidado"]
+  },
+  {
+    "id": 5,
+    "name": "Camisa de Algodón Premium",
+    "category": "Camisas",
+    "price": 69.99,
+    "imageUrl": "/images/shirt-1.jpg",
+    "description": "Una camisa de algodón egipcio de primera calidad. Suave, duradera y perfecta para cualquier ocasión.",
+    "features": ["Algodón egipcio 100%", "Corte clásico", "Cuello italiano", "Puños ajustables", "Múltiples colores disponibles"]
+  },
+  {
+    "id": 6,
+    "name": "Falda Midi de Terciopelo",
+    "category": "Faldas",
+    "price": 119.99,
+    "imageUrl": "/images/skirt-1.jpg",
+    "description": "Una falda midi de terciopelo luxurioso con un corte favorecedor. Ideal para looks nocturnos sofisticados.",
+    "features": ["Terciopelo premium", "Largo midi", "Cintura elástica", "Cierre lateral discreto", "Tacto suave y lustrado"]
+  }
+]
