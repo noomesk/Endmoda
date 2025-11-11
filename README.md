@@ -251,6 +251,6 @@ Modificar `data/products.json` para actualizar productos:
 
 ---
 
-**Desarrollado con ❤️ por MiniMax Agent**
+**Dev in progress**
 
 *ModaVista - Redefiniendo la experiencia digital de la moda*
