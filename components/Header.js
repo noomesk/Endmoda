@@ -38,7 +38,7 @@ export default function Header() {
             href="/" 
             className="text-2xl font-bold text-white hover:text-luxury-accent transition-colors duration-300"
           >
-            ModaVista
+            ENDModa
           </Link>
 
           {/* Navigation Links */}

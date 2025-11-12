@@ -90,13 +90,13 @@ export default function HeroSection() {
           ref={titleRef}
           className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight"
         >
-          ModaVista
+          ENDModa
         </h1>
         <p 
           ref={subtitleRef}
           className="text-xl md:text-2xl text-gray-200 mb-8 max-w-2xl mx-auto leading-relaxed"
         >
-          Donde la elegancia se encuentra con la innovación. 
+          Donde la autenticidad se encuentra con la innovación. 
           Descubre una nueva dimensión de la moda digital.
         </p>
         <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4 justify-center">

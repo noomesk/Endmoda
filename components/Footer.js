@@ -9,7 +9,7 @@ export default function Footer() {
           <div className="col-span-1 md:col-span-2">
             <h3 className="text-2xl font-bold text-white mb-4">ModaVista</h3>
             <p className="text-gray-300 mb-6 max-w-md">
-              Redefiniendo la experiencia de moda digital con elegancia, innovación y diseño premium.
+              Redefiniendo la experiencia de moda digital con autenticidad, innovación y diseño intervenido.
             </p>
             <div className="flex space-x-4">
               <Link href="#" className="text-gray-400 hover:text-white transition-colors">
@@ -55,16 +55,16 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-semibold mb-4">Contacto</h4>
             <ul className="space-y-2 text-gray-300">
-              <li>info@modavista.com</li>
-              <li>+34 900 123 456</li>
-              <li>Madrid, España</li>
+              <li>angieesgenial@endmoda.com</li>
+              <li>+57 300 000 000</li>
+              <li>Bogotá, Colombia</li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-luxury-light-gray mt-8 pt-8 text-center">
           <p className="text-gray-400">
-            © 2025 ModaVista. Todos los derechos reservados. Desarrollado con pasión por MiniMax Agent.
+            © 2025 ENDModa. Todos los derechos reservados. Desarrollado por noomesk.
           </p>
         </div>
       </div>

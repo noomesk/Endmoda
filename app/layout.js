@@ -7,8 +7,8 @@ import GSAPProvider from '../components/GSAPProvider'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'ModaVista - Experiencia de Moda Premium',
-  description: 'Descubre ModaVista, un showcase de moda que redefine la experiencia digital con animaciones fluidas y diseño premium.',
+  title: 'ENDModa- Experiencia de Moda personalizada',
+  description: 'Descubre ENDModa, un showcase de moda que redefine la experiencia digital con animaciones fluidas y diseño premium.',
 }
 
 export default function RootLayout({ children }) {
