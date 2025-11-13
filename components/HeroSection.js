@@ -73,7 +73,7 @@ export default function HeroSection() {
       {/* Background Image with Parallax */}
       <div className="absolute inset-0 hero-bg">
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30 z-10"></div>
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')] bg-cover bg-center"></div>
+        <div className="absolute inset-0 bg-[url('/images/hero-bg.webp')] bg-cover bg-center"></div> {/* <-- ¡AQUÍ ESTÁ EL CAMBIO! */}
       </div>
 
       {/* Floating Elements */}
