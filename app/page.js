@@ -1,4 +1,5 @@
 import HeroSection from '../components/HeroSection'
+import VideoCinemaSection from '../components/VideoCinemaSection'
 import ProductGrid from '../components/ProductGrid'
 import ScrollToTop from '../components/ScrollToTop'
 
@@ -9,6 +10,10 @@ export default function Home() {
       <section id="inicio" className="min-h-screen">
         <HeroSection />
       </section>
+
+      {/* Video Cinema Section */}
+      {/* Aplicamos un margen negativo GRANDE para que se superponga al Hero */}
+      <VideoCinemaSection className="-mt-[10vh]" /> // se asume que es una version sencilla de la frnaja del video 
 
       {/* Products Section */}
       <section id="productos" className="py-20">

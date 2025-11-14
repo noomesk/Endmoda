@@ -73,7 +73,7 @@ export default function HeroSection() {
       {/* Background Image with Parallax */}
       <div className="absolute inset-0 hero-bg">
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30 z-10"></div>
-        <div className="absolute inset-0 bg-[url('/images/hero-bg.webp')] bg-cover bg-center"></div> {/* <-- ¡AQUÍ ESTÁ EL CAMBIO! */}
+        <div className="absolute inset-0 bg-[url('/images/hero-bg.webp')] bg-cover bg-center"></div>
       </div>
 
       {/* Floating Elements */}
@@ -102,9 +102,6 @@ export default function HeroSection() {
         <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4 justify-center">
           <button className="bg-luxury-accent hover:bg-luxury-accent-light text-white px-8 py-4 text-lg rounded-none transition-all duration-300 hover:scale-105 hover:shadow-lg">
             Explorar Colección
-          </button>
-          <button className="border border-white text-white hover:bg-white hover:text-black px-8 py-4 text-lg rounded-none transition-all duration-300">
-            Ver Video
           </button>
         </div>
       </div>
