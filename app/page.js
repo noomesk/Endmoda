@@ -2,6 +2,7 @@ import HeroSection from '../components/HeroSection'
 import VideoCinemaSection from '../components/VideoCinemaSection'
 import ProductGrid from '../components/ProductGrid'
 import ScrollToTop from '../components/ScrollToTop'
+import Image from 'next/image' // <-- NUEVO: Importamos el componente Image
 
 export default function Home() {
   return (
@@ -12,7 +13,6 @@ export default function Home() {
       </section>
 
       {/* Video Cinema Section */}
-      {/* Nota: Quitamos el className para que las secciones no se superpongan */}
       <VideoCinemaSection />
 
       {/* Products Section */}
@@ -33,10 +33,17 @@ export default function Home() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* --- PRIMERA IMAGEN --- */}
             <div className="group cursor-pointer">
               <div className="relative overflow-hidden rounded-sm">
-                <div className="aspect-square bg-gradient-to-br from-luxury-accent to-luxury-accent-light opacity-80 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+                {/* <-- CAMBIO: Reemplazamos el gradiente por tu imagen */}
+                <Image
+                  src="/images/modernidad-liquida.webp"
+                  alt="Modernidad líquida - Piezas atemporales"
+                  width={500}
+                  height={500}
+                  className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                />
                 <div className="absolute bottom-6 left-6">
                   <h3 className="text-white text-xl font-semibold">Modernidad líquida</h3>
                   <p className="text-gray-200">Piezas atemporales</p>
@@ -44,10 +51,17 @@ export default function Home() {
               </div>
             </div>
             
+            {/* --- SEGUNDA IMAGEN --- */}
             <div className="group cursor-pointer">
               <div className="relative overflow-hidden rounded-sm">
-                <div className="aspect-square bg-gradient-to-br from-gray-600 to-gray-800 opacity-80 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+                {/* <-- CAMBIO: Reemplazamos el gradiente por tu imagen */}
+                <Image
+                  src="/images/autenticidad.webp"
+                  alt="Autenticidad - Diseño contemporáneo"
+                  width={500}
+                  height={500}
+                  className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                />
                 <div className="absolute bottom-6 left-6">
                   <h3 className="text-white text-xl font-semibold">Autenticidad</h3>
                   <p className="text-gray-200">Diseño contemporáneo</p>
@@ -55,10 +69,17 @@ export default function Home() {
               </div>
             </div>
             
+            {/* --- TERCERA IMAGEN --- */}
             <div className="group cursor-pointer">
               <div className="relative overflow-hidden rounded-sm">
-                <div className="aspect-square bg-gradient-to-br from-luxury-light-gray to-luxury-gray opacity-80 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+                {/* <-- CAMBIO: Reemplazamos el gradiente por tu imagen */}
+                <Image
+                  src="/images/exclusividad.webp"
+                  alt="Exclusividad - Piezas únicas"
+                  width={500}
+                  height={500}
+                  className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                />
                 <div className="absolute bottom-6 left-6">
                   <h3 className="text-white text-xl font-semibold">Exclusividad</h3>
                   <p className="text-gray-200">Piezas únicas</p>

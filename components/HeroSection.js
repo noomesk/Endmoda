@@ -13,7 +13,7 @@ export default function HeroSection() {
   const ctaRef = useRef(null)
 
   useEffect(() => {
-    // --- CORREGIDO: Aki se definen las funciones en el ámbito principal del useEffect ---
+    // --- Definimos las funciones en el ámbito principal del useEffect ---
     const handleMouseMove = (e) => {
       const { clientX, clientY } = e;
       const { innerWidth, innerHeight } = window;
@@ -30,22 +30,27 @@ export default function HeroSection() {
       });
     };
 
+    // --- MEJORADO: Lógica para que el efecto se "asiente" suavemente ---
     const handleMouseLeave = () => {
+      // 1. Matamos cualquier animación que estuviera corriendo para evitar conflictos
+      gsap.killTweensOf("#water-turbulence");
+      
+      // 2. Animamos de vuelta al estado original de forma suave y lenta
       gsap.to("#water-turbulence", {
         attr: { baseFrequency: "0.01 0.01" },
-        duration: 1,
-        ease: "power2.out"
+        duration: 2.5,       // Más largo para un efecto de "asentamiento"
+        ease: "power2.inOut" // Una curva de aceleración más orgánica
       });
     };
 
-    // Añadi los listeners al elemento del DOM
+    // Añadimos los listeners al elemento del DOM
     const element = heroRef.current;
     element.addEventListener("mousemove", handleMouseMove);
     element.addEventListener("mouseleave", handleMouseLeave);
 
     // --- gsap.context se usa solo para las animaciones de GSAP ---
     const ctx = gsap.context(() => {
-      // --- ANIMACIONES DE ENTRADA Y SCROLL  JUJU q emoción---
+      // --- ANIMACIONES DE ENTRADA Y SCROLL ---
       gsap.fromTo('.hero-bg', 
         { scale: 1.1, opacity: 0 },
         { scale: 1, opacity: 1, duration: 1.5, ease: 'power2.out' }
@@ -92,10 +97,10 @@ export default function HeroSection() {
       
     }, heroRef)
 
-    // --- La función de limpieza ahora puede acceder a todo todito todo ---
+    // --- La función de limpieza ahora puede acceder a todo ---
     return () => {
-      ctx.revert() // esto limpia las animaciones de GSAP
-      //y esto impia los listeners de eventos
+      ctx.revert() // Limpia las animaciones de GSAP
+      // Limpia los listeners de eventos
       element.removeEventListener("mousemove", handleMouseMove);
       element.removeEventListener("mouseleave", handleMouseLeave);
     }
@@ -103,7 +108,7 @@ export default function HeroSection() {
 
   return (
     <div ref={heroRef} className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* --- FILTRO SVG PARA EL EFECTO AGUA JEJEJEJ --- */}
+      {/* --- FILTRO SVG PARA EL EFECTO AGUA --- */}
       <svg className="absolute w-0 h-0">
         <filter id="water-effect">
           <feTurbulence 
@@ -127,7 +132,7 @@ export default function HeroSection() {
       {/* Background Image with Parallax */}
       <div className="absolute inset-0 hero-bg">
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30 z-10"></div>
-        {/* --- Aki SE APLICA EL FILTRO A LA IMAGEN --- */}
+        {/* --- APLICAMOS EL FILTRO A LA IMAGEN --- */}
         <div 
           className="absolute inset-0 hero-bg-image bg-[url('/images/hero-bg.webp')] bg-cover bg-center"
           style={{ filter: 'url(#water-effect)' }}
