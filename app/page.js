@@ -2,7 +2,7 @@ import HeroSection from '../components/HeroSection'
 import VideoCinemaSection from '../components/VideoCinemaSection'
 import ProductGrid from '../components/ProductGrid'
 import ScrollToTop from '../components/ScrollToTop'
-import Image from 'next/image' // <-- NUEVO: Importamos el componente Image
+import Image from 'next/image'
 
 export default function Home() {
   return (
@@ -35,16 +35,17 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* --- PRIMERA IMAGEN --- */}
             <div className="group cursor-pointer">
-              <div className="relative overflow-hidden rounded-sm">
-                {/* <-- CAMBIO: Reemplazamos el gradiente por tu imagen */}
+              <div className="relative overflow-hidden rounded-sm aspect-[4/5]">
+                {/* <-- CORREGIDO: Enfoca arriba para no cortar la cabeza */}
                 <Image
                   src="/images/modernidad-liquida.webp"
                   alt="Modernidad líquida - Piezas atemporales"
-                  width={500}
-                  height={500}
-                  className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                  fill
+                  className="object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{ objectPosition: 'top center' }}
                 />
-                <div className="absolute bottom-6 left-6">
+                <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                <div className="absolute bottom-6 left-6 z-20">
                   <h3 className="text-white text-xl font-semibold">Modernidad líquida</h3>
                   <p className="text-gray-200">Piezas atemporales</p>
                 </div>
@@ -53,16 +54,17 @@ export default function Home() {
             
             {/* --- SEGUNDA IMAGEN --- */}
             <div className="group cursor-pointer">
-              <div className="relative overflow-hidden rounded-sm">
-                {/* <-- CAMBIO: Reemplazamos el gradiente por tu imagen */}
+              <div className="relative overflow-hidden rounded-sm aspect-[4/5]">
+                {/* <-- Enfoca arriba para cortar abajo */}
                 <Image
                   src="/images/autenticidad.webp"
                   alt="Autenticidad - Diseño contemporáneo"
-                  width={500}
-                  height={500}
-                  className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                  fill
+                  className="object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{ objectPosition: 'top' }}
                 />
-                <div className="absolute bottom-6 left-6">
+                <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                <div className="absolute bottom-6 left-6 z-20">
                   <h3 className="text-white text-xl font-semibold">Autenticidad</h3>
                   <p className="text-gray-200">Diseño contemporáneo</p>
                 </div>
@@ -71,16 +73,17 @@ export default function Home() {
             
             {/* --- TERCERA IMAGEN --- */}
             <div className="group cursor-pointer">
-              <div className="relative overflow-hidden rounded-sm">
-                {/* <-- CAMBIO: Reemplazamos el gradiente por tu imagen */}
+              <div className="relative overflow-hidden rounded-sm aspect-[4/5]">
+                {/* <-- Enfoca arriba para cortar abajo */}
                 <Image
                   src="/images/exclusividad.webp"
                   alt="Exclusividad - Piezas únicas"
-                  width={500}
-                  height={500}
-                  className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                  fill
+                  className="object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{ objectPosition: 'top' }}
                 />
-                <div className="absolute bottom-6 left-6">
+                <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                <div className="absolute bottom-6 left-6 z-20">
                   <h3 className="text-white text-xl font-semibold">Exclusividad</h3>
                   <p className="text-gray-200">Piezas únicas</p>
                 </div>
