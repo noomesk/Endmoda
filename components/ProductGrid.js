@@ -75,7 +75,7 @@ export default function ProductGrid() {
           Productos Destacados
         </h2>
         <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-          Descubre nuestra selección de piezas originales, cada una diseñada para redefinir tu estilo personal.
+          Descubre nuestra selección de piezas originales, cada una diseñada para redefinir tu estilo personal y alternativo.
         </p>
       </div>
       

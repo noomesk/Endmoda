@@ -7,9 +7,9 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="col-span-1 md:col-span-2">
-            <h3 className="text-2xl font-bold text-white mb-4">ModaVista</h3>
+            <h3 className="text-2xl font-bold text-white mb-4">ENDModa</h3>
             <p className="text-gray-300 mb-6 max-w-md">
-              Redefiniendo la experiencia de moda digital con autenticidad, innovación y diseño intervenido.
+              Redefiniendo la experiencia de moda digital con autenticidad, innovación, diseño e intervención artística en prendas.
             </p>
             <div className="flex space-x-4">
               <Link href="#" className="text-gray-400 hover:text-white transition-colors">
