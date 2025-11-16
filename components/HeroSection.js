@@ -14,9 +14,7 @@ export default function HeroSection() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Hero entrance animation
-      const tl = gsap.timeline()
-      
+      // ... (Tus animaciones de entrada se quedan igual)
       // Animate background
       gsap.fromTo('.hero-bg', 
         { scale: 1.1, opacity: 0 },
@@ -62,6 +60,18 @@ export default function HeroSection() {
           scrub: true
         }
       })
+
+// --- CORREGIDO: ANIMACIÓN DE FUNDIDO AL HACER SCROLL ---
+gsap.to('.hero-bg-image', {
+  opacity: 0, // Se desvanece completamente
+  ease: 'none',
+  scrollTrigger: {
+    trigger: heroRef.current,
+    start: 'top center', // Empieza a desvanecerse cuando la parte superior del héroe llega al centro de la pantalla
+    end: 'bottom top',   // Termina de desvanecerse cuando la parte inferior del héroe llega a la parte superior
+    scrub: true
+  }
+})
       
     }, heroRef)
 
@@ -73,7 +83,7 @@ export default function HeroSection() {
       {/* Background Image with Parallax */}
       <div className="absolute inset-0 hero-bg">
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30 z-10"></div>
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')] bg-cover bg-center"></div>
+        <div className="absolute inset-0 hero-bg-image bg-[url('/images/hero-bg.webp')] bg-cover bg-center"></div>
       </div>
 
       {/* Floating Elements */}
@@ -90,21 +100,18 @@ export default function HeroSection() {
           ref={titleRef}
           className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight"
         >
-          ModaVista
+          ENDModa
         </h1>
         <p 
           ref={subtitleRef}
           className="text-xl md:text-2xl text-gray-200 mb-8 max-w-2xl mx-auto leading-relaxed"
         >
-          Donde la elegancia se encuentra con la innovación. 
+          Donde la autenticidad se encuentra con la innovación. 
           Descubre una nueva dimensión de la moda digital.
         </p>
         <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4 justify-center">
           <button className="bg-luxury-accent hover:bg-luxury-accent-light text-white px-8 py-4 text-lg rounded-none transition-all duration-300 hover:scale-105 hover:shadow-lg">
             Explorar Colección
-          </button>
-          <button className="border border-white text-white hover:bg-white hover:text-black px-8 py-4 text-lg rounded-none transition-all duration-300">
-            Ver Video
           </button>
         </div>
       </div>

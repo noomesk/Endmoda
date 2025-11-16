@@ -9,7 +9,7 @@ export default function ProductsPage() {
             Nuestra Colección
           </h1>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-            Explora cada pieza de nuestra cuidadosamente curada colección de moda premium.
+            Explora cada pieza de nuestra cuidadosamente curada colección de moda original.
           </p>
         </div>
         

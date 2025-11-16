@@ -1,4 +1,5 @@
 import HeroSection from '../components/HeroSection'
+import VideoCinemaSection from '../components/VideoCinemaSection'
 import ProductGrid from '../components/ProductGrid'
 import ScrollToTop from '../components/ScrollToTop'
 
@@ -9,6 +10,10 @@ export default function Home() {
       <section id="inicio" className="min-h-screen">
         <HeroSection />
       </section>
+
+      {/* Video Cinema Section */}
+      {/* Nota: Quitamos el className para que las secciones no se superpongan */}
+      <VideoCinemaSection />
 
       {/* Products Section */}
       <section id="productos" className="py-20">
@@ -23,7 +28,7 @@ export default function Home() {
               Colección Premium
             </h2>
             <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-              Cada pieza de nuestra colección está diseñada para potenciar tu estilo único con materiales de la más alta calidad.
+              Cada pieza de nuestra colección está diseñada para potenciar tu estilo único, moderno y con materiales de la más alta calidad.
             </p>
           </div>
           
@@ -33,7 +38,7 @@ export default function Home() {
                 <div className="aspect-square bg-gradient-to-br from-luxury-accent to-luxury-accent-light opacity-80 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="absolute inset-0 bg-black bg-opacity-20"></div>
                 <div className="absolute bottom-6 left-6">
-                  <h3 className="text-white text-xl font-semibold">Elegancia</h3>
+                  <h3 className="text-white text-xl font-semibold">Modernidad líquida</h3>
                   <p className="text-gray-200">Piezas atemporales</p>
                 </div>
               </div>
@@ -44,7 +49,7 @@ export default function Home() {
                 <div className="aspect-square bg-gradient-to-br from-gray-600 to-gray-800 opacity-80 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="absolute inset-0 bg-black bg-opacity-20"></div>
                 <div className="absolute bottom-6 left-6">
-                  <h3 className="text-white text-xl font-semibold">Modernidad</h3>
+                  <h3 className="text-white text-xl font-semibold">Autenticidad</h3>
                   <p className="text-gray-200">Diseño contemporáneo</p>
                 </div>
               </div>
@@ -71,7 +76,7 @@ export default function Home() {
             Conecta con Nosotros
           </h2>
           <p className="text-gray-300 text-lg mb-12 max-w-2xl mx-auto">
-            Descubre la moda del futuro. Únete a nuestra comunidad de estilo.
+            Descubre la moda del futuro. Únete a nuestra comunidad de estilo original
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button className="bg-luxury-accent hover:bg-luxury-accent-light text-white px-8 py-3 rounded-none transition-all duration-300 hover:scale-105">
