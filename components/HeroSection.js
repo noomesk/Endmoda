@@ -13,33 +13,59 @@ export default function HeroSection() {
   const ctaRef = useRef(null)
 
   useEffect(() => {
+    // --- CORREGIDO: Aki se definen las funciones en el ámbito principal del useEffect ---
+    const handleMouseMove = (e) => {
+      const { clientX, clientY } = e;
+      const { innerWidth, innerHeight } = window;
+      
+      const xPos = clientX / innerWidth;
+      const yPos = clientY / innerHeight;
+
+      gsap.to("#water-turbulence", {
+        attr: { 
+          baseFrequency: `${0.01 + xPos * 0.02} ${0.01 + yPos * 0.02}` 
+        },
+        duration: 0.6,
+        ease: "power2.out"
+      });
+    };
+
+    const handleMouseLeave = () => {
+      gsap.to("#water-turbulence", {
+        attr: { baseFrequency: "0.01 0.01" },
+        duration: 1,
+        ease: "power2.out"
+      });
+    };
+
+    // Añadi los listeners al elemento del DOM
+    const element = heroRef.current;
+    element.addEventListener("mousemove", handleMouseMove);
+    element.addEventListener("mouseleave", handleMouseLeave);
+
+    // --- gsap.context se usa solo para las animaciones de GSAP ---
     const ctx = gsap.context(() => {
-      // ... (Tus animaciones de entrada se quedan igual)
-      // Animate background
+      // --- ANIMACIONES DE ENTRADA Y SCROLL  JUJU q emoción---
       gsap.fromTo('.hero-bg', 
         { scale: 1.1, opacity: 0 },
         { scale: 1, opacity: 1, duration: 1.5, ease: 'power2.out' }
       )
       
-      // Animate title
       gsap.fromTo(titleRef.current, 
         { opacity: 0, y: 50 },
         { opacity: 1, y: 0, duration: 1, delay: 0.5, ease: 'power2.out' }
       )
       
-      // Animate subtitle
       gsap.fromTo(subtitleRef.current, 
         { opacity: 0, y: 30 },
         { opacity: 1, y: 0, duration: 0.8, delay: 0.8, ease: 'power2.out' }
       )
       
-      // Animate CTA button
       gsap.fromTo(ctaRef.current, 
         { opacity: 0, y: 20 },
         { opacity: 1, y: 0, duration: 0.6, delay: 1.1, ease: 'power2.out' }
       )
       
-      // Floating elements animation
       gsap.to('.floating-element', {
         y: -20,
         duration: 2,
@@ -49,41 +75,63 @@ export default function HeroSection() {
         stagger: 0.2
       })
       
-      // Scroll-triggered parallax effect
-      gsap.to('.hero-bg', {
-        yPercent: -50,
-        ease: 'none',
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: heroRef.current,
-          start: 'top bottom',
+          start: 'top top',
           end: 'bottom top',
           scrub: true
         }
-      })
+      });
 
-// --- CORREGIDO: ANIMACIÓN DE FUNDIDO AL HACER SCROLL ---
-gsap.to('.hero-bg-image', {
-  opacity: 0, // Se desvanece completamente
-  ease: 'none',
-  scrollTrigger: {
-    trigger: heroRef.current,
-    start: 'top center', // Empieza a desvanecerse cuando la parte superior del héroe llega al centro de la pantalla
-    end: 'bottom top',   // Termina de desvanecerse cuando la parte inferior del héroe llega a la parte superior
-    scrub: true
-  }
-})
+      tl.to('.hero-bg-image', {
+        yPercent: -30,
+        opacity: 0,
+        ease: 'none'
+      });
       
     }, heroRef)
 
-    return () => ctx.revert()
-  }, [])
+    // --- La función de limpieza ahora puede acceder a todo todito todo ---
+    return () => {
+      ctx.revert() // esto limpia las animaciones de GSAP
+      //y esto impia los listeners de eventos
+      element.removeEventListener("mousemove", handleMouseMove);
+      element.removeEventListener("mouseleave", handleMouseLeave);
+    }
+  }, []) // El array de dependencias vacío
 
   return (
-    <div ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <div ref={heroRef} className="relative h-screen flex items-center justify-center overflow-hidden">
+      {/* --- FILTRO SVG PARA EL EFECTO AGUA JEJEJEJ --- */}
+      <svg className="absolute w-0 h-0">
+        <filter id="water-effect">
+          <feTurbulence 
+            id="water-turbulence" 
+            type="fractalNoise" 
+            baseFrequency="0.01 0.01" 
+            numOctaves="1" 
+            result="turbulence" 
+            seed="2"
+          />
+          <feDisplacementMap 
+            in2="turbulence" 
+            in="SourceGraphic" 
+            scale="15" 
+            xChannelSelector="R" 
+            yChannelSelector="G"
+          />
+        </filter>
+      </svg>
+
       {/* Background Image with Parallax */}
       <div className="absolute inset-0 hero-bg">
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30 z-10"></div>
-        <div className="absolute inset-0 hero-bg-image bg-[url('/images/hero-bg.webp')] bg-cover bg-center"></div>
+        {/* --- Aki SE APLICA EL FILTRO A LA IMAGEN --- */}
+        <div 
+          className="absolute inset-0 hero-bg-image bg-[url('/images/hero-bg.webp')] bg-cover bg-center"
+          style={{ filter: 'url(#water-effect)' }}
+        ></div>
       </div>
 
       {/* Floating Elements */}
