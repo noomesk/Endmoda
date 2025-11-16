@@ -33,57 +33,87 @@ export default function Home() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* --- PRIMERA IMAGEN --- */}
+            {/* --- PRIMERA IMAGEN CON VIÑETEADO --- */}
             <div className="group cursor-pointer">
-              <div className="relative overflow-hidden rounded-sm aspect-[4/5]">
-                {/* <-- CORREGIDO: Enfoca arriba para no cortar la cabeza */}
+              <div className="relative overflow-hidden rounded-sm aspect-[4/5] bg-luxury-gray">
+                {/* Capa 1: Fondo desenfocado */}
+                <div 
+                  className="absolute inset-0 bg-cover bg-center blur-2xl scale-110 opacity-60"
+                  style={{ backgroundImage: `url('/images/modernidad-liquida.webp')` }}
+                />
+                {/* Capa 2: Imagen principal completa */}
                 <Image
                   src="/images/modernidad-liquida.webp"
                   alt="Modernidad líquida - Piezas atemporales"
                   fill
-                  className="object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{ objectPosition: 'top center' }}
+                  className="relative z-10 object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-300"
                 />
-                <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-                <div className="absolute bottom-6 left-6 z-20">
+                {/* Capa 3: VIÑETEADO para suavizar bordes */}
+                <div 
+                  className="absolute inset-0 z-15 pointer-events-none"
+                  style={{
+                    background: 'radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, 0.6) 100%)'
+                  }}
+                />
+                {/* Capa 4: Gradiente para el texto */}
+                <div className="absolute inset-0 z-20 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                <div className="absolute bottom-6 left-6 z-30">
                   <h3 className="text-white text-xl font-semibold">Modernidad líquida</h3>
                   <p className="text-gray-200">Piezas atemporales</p>
                 </div>
               </div>
             </div>
             
-            {/* --- SEGUNDA IMAGEN --- */}
+            {/* --- SEGUNDA IMAGEN CON VIÑETEADO --- */}
             <div className="group cursor-pointer">
-              <div className="relative overflow-hidden rounded-sm aspect-[4/5]">
-                {/* <-- Enfoca arriba para cortar abajo */}
+              <div className="relative overflow-hidden rounded-sm aspect-[4/5] bg-luxury-gray">
+                <div 
+                  className="absolute inset-0 bg-cover bg-center blur-2xl scale-110 opacity-60"
+                  style={{ backgroundImage: `url('/images/autenticidad.webp')` }}
+                />
                 <Image
                   src="/images/autenticidad.webp"
                   alt="Autenticidad - Diseño contemporáneo"
                   fill
-                  className="object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{ objectPosition: 'top' }}
+                  className="relative z-10 object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-300"
                 />
-                <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-                <div className="absolute bottom-6 left-6 z-20">
+                {/* Capa 3: VIÑETEADO para suavizar bordes */}
+                <div 
+                  className="absolute inset-0 z-15 pointer-events-none"
+                  style={{
+                    background: 'radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, 0.6) 100%)'
+                  }}
+                />
+                <div className="absolute inset-0 z-20 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                <div className="absolute bottom-6 left-6 z-30">
                   <h3 className="text-white text-xl font-semibold">Autenticidad</h3>
                   <p className="text-gray-200">Diseño contemporáneo</p>
                 </div>
               </div>
             </div>
             
-            {/* --- TERCERA IMAGEN --- */}
+            {/* --- TERCERA IMAGEN CON VIÑETEADO --- */}
             <div className="group cursor-pointer">
-              <div className="relative overflow-hidden rounded-sm aspect-[4/5]">
-                {/* <-- Enfoca arriba para cortar abajo */}
+              <div className="relative overflow-hidden rounded-sm aspect-[4/5] bg-luxury-gray">
+                <div 
+                  className="absolute inset-0 bg-cover bg-center blur-2xl scale-110 opacity-60"
+                  style={{ backgroundImage: `url('/images/exclusividad.webp')` }}
+                />
                 <Image
                   src="/images/exclusividad.webp"
                   alt="Exclusividad - Piezas únicas"
                   fill
-                  className="object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{ objectPosition: 'top' }}
+                  className="relative z-10 object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-300"
                 />
-                <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-                <div className="absolute bottom-6 left-6 z-20">
+                {/* Capa 3: VIÑETEADO para suavizar bordes */}
+                <div 
+                  className="absolute inset-0 z-15 pointer-events-none"
+                  style={{
+                    background: 'radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, 0.6) 100%)'
+                  }}
+                />
+                <div className="absolute inset-0 z-20 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                <div className="absolute bottom-6 left-6 z-30">
                   <h3 className="text-white text-xl font-semibold">Exclusividad</h3>
                   <p className="text-gray-200">Piezas únicas</p>
                 </div>

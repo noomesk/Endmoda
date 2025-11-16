@@ -15,13 +15,13 @@
     "id": 3,
     "name": "Vestido de Noche Exclusivo",
     "price": 250.50,
-    "image": "/images/exclusividad.webp"
+    "image": "/images/o.webp"
   },
   {
     "id": 4,
     "name": "Chaqueta de Diseño Contemporáneo",
     "price": 180.75,
-    "image": "/images/autenticidad.webp"
+    "image": "/images/cap.webp"
   },
   {
     "id": 5,
@@ -33,6 +33,6 @@
     "id": 6,
     "name": "Camisa Fluida",
     "price": 65.00,
-    "image": "/images/modernidad-liquida.webp"
+    "image": "/images/ou.webp"
   }
 ]

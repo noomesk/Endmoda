@@ -2,6 +2,7 @@
 
 import { useRef, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image' // <-- IMPORTANTE: Asegúrate de importar Image
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -49,21 +50,31 @@ export default function ProductCard({ product, index }) {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        {/* Product Image - ESTRUCTURA SIMPLIFICADA */}
-        <div className="relative overflow-hidden aspect-[3/4]">
+        {/* Product Image - ESTRUCTURA CON FONDO DESENFOCADO */}
+        <div className="relative aspect-[4/5] bg-luxury-gray"> {/* Contenedor principal con la proporción fija */}
+          
+          {/* Capa 1: La imagen de fondo, grande y desenfocada */}
           <div 
-            ref={imageRef}
-            className="w-full h-full bg-cover bg-center opacity-80 group-hover:opacity-100 transition-all duration-300"
+            className="absolute inset-0 bg-cover bg-center blur-2xl scale-110 opacity-60"
             style={{ backgroundImage: `url(${product.image})` }}
+          />
+
+          {/* Capa 2: La imagen principal, nítida y completa */}
+          <Image
+            ref={imageRef}
+            src={product.image}
+            alt={product.name}
+            fill
+            className="relative z-10 object-contain opacity-90 group-hover:opacity-100 transition-all duration-300"
           />
           
           {/* Hover Overlay */}
-          <div className={`absolute inset-0 bg-black/20 transition-opacity duration-300 ${
+          <div className={`absolute inset-0 z-20 bg-black/10 transition-opacity duration-300 ${
             isHovered ? 'opacity-100' : 'opacity-0'
           }`}></div>
           
           {/* Quick View Button */}
-          <div className={`absolute bottom-4 left-1/2 transform -translate-x-1/2 transition-all duration-300 ${
+          <div className={`absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20 transition-all duration-300 ${
             isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}>
             <button className="bg-white text-black px-6 py-2 text-sm font-medium hover:bg-luxury-accent hover:text-white transition-colors duration-300">
