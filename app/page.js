@@ -20,14 +20,16 @@ export default function Home() {
         <ProductGrid />
       </section>
 
-      {/* Collection Section - VERSIÓN LIMPIA Y LEGIBLE */}
+      {/* Collection Section - VERSIÓN CON TIPOGRAFÍA ACTUALIZADA */}
       <section id="coleccion" className="py-20 bg-luxury-gray">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
+            {/* CAMBIO: Título con nueva fuente */}
+            <h2 className="text-4xl md:text-6xl font-title font-semibold uppercase tracking-wider text-white mb-6">
               Colección Premium
             </h2>
-            <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+            {/* CAMBIO: Párrafo con nueva fuente */}
+            <p className="text-gray-300 text-lg max-w-2xl mx-auto font-body">
               Cada pieza de nuestra colección está diseñada para potenciar tu estilo único, moderno y con materiales de la más alta calidad.
             </p>
           </div>
@@ -36,26 +38,24 @@ export default function Home() {
             {/* --- PRIMERA IMAGEN --- */}
             <div className="group cursor-pointer">
               <div className="relative overflow-hidden rounded-sm aspect-[4/5] bg-luxury-gray">
-                {/* Capa 1: Fondo desenfocado */}
                 <div 
                   className="absolute inset-0 bg-cover bg-center blur-2xl scale-110 opacity-60"
                   style={{ backgroundImage: `url('/images/modernidad-liquida.webp')` }}
                 />
-                {/* Capa 2: Imagen principal completa */}
                 <Image
                   src="/images/modernidad-liquida.webp"
                   alt="Modernidad líquida - Piezas atemporales"
                   fill
-                  className="relative z-10 object-contain transition-all duration-300 group-hover:scale-105"
+                  className="relative z-10 object-contain opacity-90 group-hover:opacity-100 transition-all duration-300 group-hover:scale-105"
                 />
-                {/* Capa 3: Gradiente sutil para el texto */}
                 <div className="absolute inset-0 z-20 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
                 
-                {/* Capa 4: CAJA DE TEXTO LEGIBLE */}
                 <div className="absolute bottom-4 left-4 right-4 z-30">
                   <div className="bg-black/70 backdrop-blur-sm p-3 rounded-md">
-                    <h3 className="text-white text-lg font-semibold">Modernidad líquida</h3>
-                    <p className="text-gray-200 text-sm">Piezas atemporales</p>
+                    {/* CAMBIO: Título con nueva fuente */}
+                    <h3 className="text-white text-lg font-title font-medium">Modernidad líquida</h3>
+                    {/* CAMBIO: Párrafo con nueva fuente */}
+                    <p className="text-gray-200 text-sm font-body">Piezas atemporales</p>
                   </div>
                 </div>
               </div>
@@ -72,14 +72,14 @@ export default function Home() {
                   src="/images/autenticidad.webp"
                   alt="Autenticidad - Diseño contemporáneo"
                   fill
-                  className="relative z-10 object-contain transition-all duration-300 group-hover:scale-105"
+                  className="relative z-10 object-contain opacity-90 group-hover:opacity-100 transition-all duration-300 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 z-20 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
                 
                 <div className="absolute bottom-4 left-4 right-4 z-30">
                   <div className="bg-black/70 backdrop-blur-sm p-3 rounded-md">
-                    <h3 className="text-white text-lg font-semibold">Autenticidad</h3>
-                    <p className="text-gray-200 text-sm">Diseño contemporáneo</p>
+                    <h3 className="text-white text-lg font-title font-medium">Autenticidad</h3>
+                    <p className="text-gray-200 text-sm font-body">Diseño contemporáneo</p>
                   </div>
                 </div>
               </div>
@@ -96,14 +96,14 @@ export default function Home() {
                   src="/images/exclusividad.webp"
                   alt="Exclusividad - Piezas únicas"
                   fill
-                  className="relative z-10 object-contain transition-all duration-300 group-hover:scale-105"
+                  className="relative z-10 object-contain opacity-90 group-hover:opacity-100 transition-all duration-300 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 z-20 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
                 
                 <div className="absolute bottom-4 left-4 right-4 z-30">
                   <div className="bg-black/70 backdrop-blur-sm p-3 rounded-md">
-                    <h3 className="text-white text-lg font-semibold">Exclusividad</h3>
-                    <p className="text-gray-200 text-sm">Piezas únicas</p>
+                    <h3 className="text-white text-lg font-title font-medium">Exclusividad</h3>
+                    <p className="text-gray-200 text-sm font-body">Piezas únicas</p>
                   </div>
                 </div>
               </div>
@@ -112,13 +112,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contact Section */}
+      {/* Contact Section - VERSIÓN CON TIPOGRAFÍA ACTUALIZADA */}
       <section id="contacto" className="py-20">
         <div className="container mx-auto px-6 text-center">
-          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
+          {/* CAMBIO: Título con nueva fuente */}
+          <h2 className="text-4xl md:text-6xl font-title font-semibold uppercase tracking-wider text-white mb-6">
             Conecta con Nosotros
           </h2>
-          <p className="text-gray-300 text-lg mb-12 max-w-2xl mx-auto">
+          {/* CAMBIO: Párrafo con nueva fuente */}
+          <p className="text-gray-300 text-lg mb-12 max-w-2xl mx-auto font-body">
             Descubre la moda del futuro. Únete a nuestra comunidad de estilo original
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

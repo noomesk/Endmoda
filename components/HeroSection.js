@@ -32,25 +32,20 @@ export default function HeroSection() {
 
     // --- MEJORADO: Lógica para que el efecto se "asiente" suavemente ---
     const handleMouseLeave = () => {
-      // 1. Matamos cualquier animación que estuviera corriendo para evitar conflictos
       gsap.killTweensOf("#water-turbulence");
       
-      // 2. Animamos de vuelta al estado original de forma suave y lenta
       gsap.to("#water-turbulence", {
         attr: { baseFrequency: "0.01 0.01" },
-        duration: 2.5,       // Más largo para un efecto de "asentamiento"
-        ease: "power2.inOut" // Una curva de aceleración más orgánica
+        duration: 2.5,
+        ease: "power2.inOut"
       });
     };
 
-    // Añadimos los listeners al elemento del DOM
     const element = heroRef.current;
     element.addEventListener("mousemove", handleMouseMove);
     element.addEventListener("mouseleave", handleMouseLeave);
 
-    // --- gsap.context se usa solo para las animaciones de GSAP ---
     const ctx = gsap.context(() => {
-      // --- ANIMACIONES DE ENTRADA Y SCROLL ---
       gsap.fromTo('.hero-bg', 
         { scale: 1.1, opacity: 0 },
         { scale: 1, opacity: 1, duration: 1.5, ease: 'power2.out' }
@@ -97,18 +92,15 @@ export default function HeroSection() {
       
     }, heroRef)
 
-    // --- La función de limpieza ahora puede acceder a todo ---
     return () => {
-      ctx.revert() // Limpia las animaciones de GSAP
-      // Limpia los listeners de eventos
+      ctx.revert()
       element.removeEventListener("mousemove", handleMouseMove);
       element.removeEventListener("mouseleave", handleMouseLeave);
     }
-  }, []) // El array de dependencias vacío
+  }, [])
 
   return (
     <div ref={heroRef} className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* --- FILTRO SVG PARA EL EFECTO AGUA --- */}
       <svg className="absolute w-0 h-0">
         <filter id="water-effect">
           <feTurbulence 
@@ -129,17 +121,14 @@ export default function HeroSection() {
         </filter>
       </svg>
 
-      {/* Background Image with Parallax */}
       <div className="absolute inset-0 hero-bg">
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30 z-10"></div>
-        {/* --- APLICAMOS EL FILTRO A LA IMAGEN --- */}
         <div 
           className="absolute inset-0 hero-bg-image bg-[url('/images/hero-bg.webp')] bg-cover bg-center"
           style={{ filter: 'url(#water-effect)' }}
         ></div>
       </div>
 
-      {/* Floating Elements */}
       <div className="absolute inset-0 z-10">
         <div className="floating-element absolute top-1/4 left-10 w-2 h-2 bg-luxury-accent rounded-full opacity-30"></div>
         <div className="floating-element absolute top-1/3 right-20 w-1 h-1 bg-white rounded-full opacity-50" style={{ animationDelay: '0.5s' }}></div>
@@ -147,17 +136,18 @@ export default function HeroSection() {
         <div className="floating-element absolute top-1/2 right-1/3 w-1 h-1 bg-white rounded-full opacity-40" style={{ animationDelay: '1.5s' }}></div>
       </div>
 
-      {/* Content */}
       <div className="relative z-20 text-center max-w-4xl mx-auto px-6">
         <h1 
           ref={titleRef}
-          className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight"
+          // CAMBIO: Aplicamos la nueva fuente de título con estilo audaz
+          className="text-5xl md:text-7xl lg:text-8xl font-title font-semibold uppercase tracking-wider text-white mb-6 leading-tight"
         >
           ENDModa
         </h1>
         <p 
           ref={subtitleRef}
-          className="text-xl md:text-2xl text-gray-200 mb-8 max-w-2xl mx-auto leading-relaxed"
+          // CAMBIO: Aplicamos la nueva fuente de texto
+          className="text-xl md:text-2xl text-gray-200 mb-8 max-w-2xl mx-auto leading-relaxed font-body"
         >
           Donde la autenticidad se encuentra con la innovación. 
           Descubre una nueva dimensión de la moda digital.
@@ -169,7 +159,6 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
         <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
           <div className="w-1 h-3 bg-white rounded-full mt-2 animate-bounce"></div>

@@ -2,7 +2,7 @@
 
 import { useRef, useState } from 'react'
 import Link from 'next/link'
-import Image from 'next/image' // <-- IMPORTANTE: Asegúrate de importar Image
+import Image from 'next/image'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -50,16 +50,11 @@ export default function ProductCard({ product, index }) {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        {/* Product Image - ESTRUCTURA CON FONDO DESENFOCADO */}
-        <div className="relative aspect-[4/5] bg-luxury-gray"> {/* Contenedor principal con la proporción fija */}
-          
-          {/* Capa 1: La imagen de fondo, grande y desenfocada */}
+        <div className="relative aspect-[4/5] bg-luxury-gray">
           <div 
             className="absolute inset-0 bg-cover bg-center blur-2xl scale-110 opacity-60"
             style={{ backgroundImage: `url(${product.image})` }}
           />
-
-          {/* Capa 2: La imagen principal, nítida y completa */}
           <Image
             ref={imageRef}
             src={product.image}
@@ -67,13 +62,10 @@ export default function ProductCard({ product, index }) {
             fill
             className="relative z-10 object-contain opacity-90 group-hover:opacity-100 transition-all duration-300"
           />
-          
-          {/* Hover Overlay */}
           <div className={`absolute inset-0 z-20 bg-black/10 transition-opacity duration-300 ${
             isHovered ? 'opacity-100' : 'opacity-0'
           }`}></div>
           
-          {/* Quick View Button */}
           <div className={`absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20 transition-all duration-300 ${
             isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}>
@@ -83,9 +75,9 @@ export default function ProductCard({ product, index }) {
           </div>
         </div>
 
-        {/* Product Info */}
         <div ref={contentRef} className="p-6">
-          <h3 className="text-white text-xl font-semibold mb-2 group-hover:text-luxury-accent transition-colors duration-300">
+          {/* CAMBIO: Título del producto con nueva fuente */}
+          <h3 className="text-white text-xl font-title font-medium mb-2 group-hover:text-luxury-accent transition-colors duration-300">
             {product.name}
           </h3>
           <div className="flex items-center justify-between">
