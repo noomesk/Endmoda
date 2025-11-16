@@ -1,10 +1,43 @@
+'use client' // <-- IMPORTANTE: ¡Este componente ahora es del cliente!
+
 import HeroSection from '../components/HeroSection'
 import VideoCinemaSection from '../components/VideoCinemaSection'
 import ProductGrid from '../components/ProductGrid'
 import ScrollToTop from '../components/ScrollToTop'
 import Image from 'next/image'
+import { useRef } from 'react' // <-- NUEVO: Importamos useRef
 
 export default function Home() {
+  // <-- NUEVO: Creamos una referencia para cada imagen
+  const modernidadImageRef = useRef(null)
+  const autenticidadImageRef = useRef(null)
+  const exclusividadImageRef = useRef(null)
+
+  // <-- NUEVO: La lógica del efecto 3D Tilt
+  const handleMouseMove = (e, imageRef) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    const rotateX = ((y - centerY) / centerY) * -15;
+    const rotateY = ((x - centerX) / centerX) * 15;
+
+    if (imageRef.current) {
+      imageRef.current.style.transform = `perspective(1000px) scale(1.05) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      imageRef.current.style.boxShadow = '0 10px 40px rgba(0,0,0,0.4)';
+    }
+  };
+
+  const handleMouseLeave = (imageRef) => {
+    if (imageRef.current) {
+      imageRef.current.style.transform = 'perspective(1000px) scale(1) rotateX(0deg) rotateY(0deg)';
+      imageRef.current.style.boxShadow = '0 5px 20px rgba(0,0,0,0.2)';
+    }
+  };
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -20,59 +53,65 @@ export default function Home() {
         <ProductGrid />
       </section>
 
-      {/* Collection Section - VERSIÓN CON TIPOGRAFÍA ACTUALIZADA */}
+      {/* Collection Section - CON EFECTO 3D TILT AISLADO */}
       <section id="coleccion" className="py-20 bg-luxury-gray">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            {/* CAMBIO: Título con nueva fuente */}
             <h2 className="text-4xl md:text-6xl font-title font-semibold uppercase tracking-wider text-white mb-6">
               Colección Premium
             </h2>
-            {/* CAMBIO: Párrafo con nueva fuente */}
             <p className="text-gray-300 text-lg max-w-2xl mx-auto font-body">
               Cada pieza de nuestra colección está diseñada para potenciar tu estilo único, moderno y con materiales de la más alta calidad.
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* --- PRIMERA IMAGEN --- */}
-            <div className="group cursor-pointer">
+            {/* --- PRIMERA IMAGEN CON 3D TILT --- */}
+            <div 
+              className="group cursor-pointer"
+              onMouseMove={(e) => handleMouseMove(e, modernidadImageRef)}
+              onMouseLeave={() => handleMouseLeave(modernidadImageRef)}
+            >
               <div className="relative overflow-hidden rounded-sm aspect-[4/5] bg-luxury-gray">
                 <div 
                   className="absolute inset-0 bg-cover bg-center blur-2xl scale-110 opacity-60"
                   style={{ backgroundImage: `url('/images/modernidad-liquida.webp')` }}
                 />
                 <Image
+                  ref={modernidadImageRef} // <-- NUEVO: Conectamos la referencia
                   src="/images/modernidad-liquida.webp"
                   alt="Modernidad líquida - Piezas atemporales"
                   fill
-                  className="relative z-10 object-contain opacity-90 group-hover:opacity-100 transition-all duration-300 group-hover:scale-105"
+                  className="relative z-10 object-contain opacity-90 transition-all duration-300 ease-out"
                 />
                 <div className="absolute inset-0 z-20 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
                 
                 <div className="absolute bottom-4 left-4 right-4 z-30">
                   <div className="bg-black/70 backdrop-blur-sm p-3 rounded-md">
-                    {/* CAMBIO: Título con nueva fuente */}
                     <h3 className="text-white text-lg font-title font-medium">Modernidad líquida</h3>
-                    {/* CAMBIO: Párrafo con nueva fuente */}
                     <p className="text-gray-200 text-sm font-body">Piezas atemporales</p>
                   </div>
                 </div>
               </div>
             </div>
             
-            {/* --- SEGUNDA IMAGEN --- */}
-            <div className="group cursor-pointer">
+            {/* --- SEGUNDA IMAGEN CON 3D TILT --- */}
+            <div 
+              className="group cursor-pointer"
+              onMouseMove={(e) => handleMouseMove(e, autenticidadImageRef)}
+              onMouseLeave={() => handleMouseLeave(autenticidadImageRef)}
+            >
               <div className="relative overflow-hidden rounded-sm aspect-[4/5] bg-luxury-gray">
                 <div 
                   className="absolute inset-0 bg-cover bg-center blur-2xl scale-110 opacity-60"
                   style={{ backgroundImage: `url('/images/autenticidad.webp')` }}
                 />
                 <Image
+                  ref={autenticidadImageRef} // <-- NUEVO: Conectamos la referencia
                   src="/images/autenticidad.webp"
                   alt="Autenticidad - Diseño contemporáneo"
                   fill
-                  className="relative z-10 object-contain opacity-90 group-hover:opacity-100 transition-all duration-300 group-hover:scale-105"
+                  className="relative z-10 object-contain opacity-90 transition-all duration-300 ease-out"
                 />
                 <div className="absolute inset-0 z-20 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
                 
@@ -85,18 +124,23 @@ export default function Home() {
               </div>
             </div>
             
-            {/* --- TERCERA IMAGEN --- */}
-            <div className="group cursor-pointer">
+            {/* --- TERCERA IMAGEN CON 3D TILT --- */}
+            <div 
+              className="group cursor-pointer"
+              onMouseMove={(e) => handleMouseMove(e, exclusividadImageRef)}
+              onMouseLeave={() => handleMouseLeave(exclusividadImageRef)}
+            >
               <div className="relative overflow-hidden rounded-sm aspect-[4/5] bg-luxury-gray">
                 <div 
                   className="absolute inset-0 bg-cover bg-center blur-2xl scale-110 opacity-60"
                   style={{ backgroundImage: `url('/images/exclusividad.webp')` }}
                 />
                 <Image
+                  ref={exclusividadImageRef} // <-- NUEVO: Conectamos la referencia
                   src="/images/exclusividad.webp"
                   alt="Exclusividad - Piezas únicas"
                   fill
-                  className="relative z-10 object-contain opacity-90 group-hover:opacity-100 transition-all duration-300 group-hover:scale-105"
+                  className="relative z-10 object-contain opacity-90 transition-all duration-300 ease-out"
                 />
                 <div className="absolute inset-0 z-20 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
                 
@@ -112,14 +156,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contact Section - VERSIÓN CON TIPOGRAFÍA ACTUALIZADA */}
+      {/* Contact Section */}
       <section id="contacto" className="py-20">
         <div className="container mx-auto px-6 text-center">
-          {/* CAMBIO: Título con nueva fuente */}
           <h2 className="text-4xl md:text-6xl font-title font-semibold uppercase tracking-wider text-white mb-6">
             Conecta con Nosotros
           </h2>
-          {/* CAMBIO: Párrafo con nueva fuente */}
           <p className="text-gray-300 text-lg mb-12 max-w-2xl mx-auto font-body">
             Descubre la moda del futuro. Únete a nuestra comunidad de estilo original
           </p>
