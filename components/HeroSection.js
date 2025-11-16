@@ -14,9 +14,7 @@ export default function HeroSection() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Hero entrance animation
-      const tl = gsap.timeline()
-      
+      // ... (Tus animaciones de entrada se quedan igual)
       // Animate background
       gsap.fromTo('.hero-bg', 
         { scale: 1.1, opacity: 0 },
@@ -62,6 +60,18 @@ export default function HeroSection() {
           scrub: true
         }
       })
+
+// --- CORREGIDO: ANIMACIÓN DE FUNDIDO AL HACER SCROLL ---
+gsap.to('.hero-bg-image', {
+  opacity: 0, // Se desvanece completamente
+  ease: 'none',
+  scrollTrigger: {
+    trigger: heroRef.current,
+    start: 'top center', // Empieza a desvanecerse cuando la parte superior del héroe llega al centro de la pantalla
+    end: 'bottom top',   // Termina de desvanecerse cuando la parte inferior del héroe llega a la parte superior
+    scrub: true
+  }
+})
       
     }, heroRef)
 
@@ -73,7 +83,7 @@ export default function HeroSection() {
       {/* Background Image with Parallax */}
       <div className="absolute inset-0 hero-bg">
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30 z-10"></div>
-        <div className="absolute inset-0 bg-[url('/images/hero-bg.webp')] bg-cover bg-center"></div>
+        <div className="absolute inset-0 hero-bg-image bg-[url('/images/hero-bg.webp')] bg-cover bg-center"></div>
       </div>
 
       {/* Floating Elements */}

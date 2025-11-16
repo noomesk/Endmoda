@@ -12,8 +12,8 @@ export default function Home() {
       </section>
 
       {/* Video Cinema Section */}
-      {/* Aplicamos un margen negativo GRANDE para que se superponga al Hero */}
-      <VideoCinemaSection className="-mt-[10vh]" /> // se asume que es una version sencilla de la frnaja del video 
+      {/* Nota: Quitamos el className para que las secciones no se superpongan */}
+      <VideoCinemaSection />
 
       {/* Products Section */}
       <section id="productos" className="py-20">
