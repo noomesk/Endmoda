@@ -10,6 +10,8 @@ module.exports = {
       fontFamily: {
         'sans': ['Inter', 'Helvetica Neue', 'system-ui', 'sans-serif'],
         'luxury': ['Didot', 'serif'],
+        'title': ['Oswald', 'sans-serif'], // <-- NUEVO: Nuestra fuente de títulos
+        'body': ['Lora', 'serif'],      // <-- NUEVO: Nuestra fuente de texto
       },
       colors: {
         'luxury': {
