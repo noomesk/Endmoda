@@ -106,4 +106,4 @@ export default function ProductCard({ product, index }) {
       </div>
     </Link>
   )
-}
+} 

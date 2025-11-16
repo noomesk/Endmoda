@@ -1,19 +1,19 @@
 [
   {
     "id": 1,
-    "name": "Blusa Étnica Moderna",
+    "name": "Saco Oversize//Lana vegan",
     "price": 89.99,
     "image": "/images/k.webp"
   },
   {
     "id": 2,
-    "name": "Pantalón de Corte Clásico",
+    "name": "Pantalón cargo baggy oversize",
     "price": 120.00,
     "image": "/images/mm.webp"
   },
   {
     "id": 3,
-    "name": "Vestido de Noche Exclusivo",
+    "name": "Hakama short baggy exclusivo",
     "price": 250.50,
     "image": "/images/o.webp"
   },
@@ -25,13 +25,13 @@
   },
   {
     "id": 5,
-    "name": "Conjunto de Lujo",
+    "name": "Conjunto morrigal informal y vintage",
     "price": 320.00,
-    "image": "/images/exclusividad.webp"
+    "image": "/images/zx.webp"
   },
   {
     "id": 6,
-    "name": "Camisa Fluida",
+    "name": "Camisa Fluida HX20889B",
     "price": 65.00,
     "image": "/images/ou.webp"
   }

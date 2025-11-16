@@ -8,12 +8,12 @@ import Image from 'next/image'
 import { useRef } from 'react' // <-- NUEVO: Importamos useRef
 
 export default function Home() {
-  // <-- NUEVO: Creamos una referencia para cada imagen
+  // <-- NUEVO: Se creó una referencia para cada imagen
   const modernidadImageRef = useRef(null)
   const autenticidadImageRef = useRef(null)
   const exclusividadImageRef = useRef(null)
 
-  // <-- NUEVO: La lógica del efecto 3D Tilt
+  // <-- NUEVO: La lógica del efecto 3D Tilt, el efecto super cooooool
   const handleMouseMove = (e, imageRef) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -61,7 +61,7 @@ export default function Home() {
               Colección Premium
             </h2>
             <p className="text-gray-300 text-lg max-w-2xl mx-auto font-body">
-              Cada pieza de nuestra colección está diseñada para potenciar tu estilo único, moderno y con materiales de la más alta calidad.
+              Cada pieza de nuestra colección está diseñada para potenciar tu estilo único, moderno y con materiales de la más alta calidad priorizando el Upcycling creativo para cuidar nuestro planeta.
             </p>
           </div>
           
@@ -78,7 +78,7 @@ export default function Home() {
                   style={{ backgroundImage: `url('/images/modernidad-liquida.webp')` }}
                 />
                 <Image
-                  ref={modernidadImageRef} // <-- NUEVO: Conectamos la referencia
+                  ref={modernidadImageRef} // <-- NUEVO: aki se conecta la referencia
                   src="/images/modernidad-liquida.webp"
                   alt="Modernidad líquida - Piezas atemporales"
                   fill
@@ -107,7 +107,7 @@ export default function Home() {
                   style={{ backgroundImage: `url('/images/autenticidad.webp')` }}
                 />
                 <Image
-                  ref={autenticidadImageRef} // <-- NUEVO: Conectamos la referencia
+                  ref={autenticidadImageRef} // <-- NUEVO: aki se conecta la referencia jjeje
                   src="/images/autenticidad.webp"
                   alt="Autenticidad - Diseño contemporáneo"
                   fill
@@ -136,7 +136,7 @@ export default function Home() {
                   style={{ backgroundImage: `url('/images/exclusividad.webp')` }}
                 />
                 <Image
-                  ref={exclusividadImageRef} // <-- NUEVO: Conectamos la referencia
+                  ref={exclusividadImageRef} // <-- NUEVO: aki se conecta la referencia jjuj
                   src="/images/exclusividad.webp"
                   alt="Exclusividad - Piezas únicas"
                   fill
@@ -163,7 +163,7 @@ export default function Home() {
             Conecta con Nosotros
           </h2>
           <p className="text-gray-300 text-lg mb-12 max-w-2xl mx-auto font-body">
-            Descubre la moda del futuro. Únete a nuestra comunidad de estilo original
+            Descubre la moda del futuro. Únete a nuestra comunidad de estilo original y alternativo. Cuidamos el planeta con cada elección, abriendo un camino hacia un estilo más consciente y auténtico. HACKEA LA MODA!!! 
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button className="bg-luxury-accent hover:bg-luxury-accent-light text-white px-8 py-3 rounded-none transition-all duration-300 hover:scale-105">
