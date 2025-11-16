@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "Blusa Étnica Moderna",
+    "price": 89.99,
+    "image": "/images/k.webp"
+  },
+  {
+    "id": 2,
+    "name": "Pantalón de Corte Clásico",
+    "price": 120.00,
+    "image": "/images/l.webp"
+  },
+  {
+    "id": 3,
+    "name": "Vestido de Noche Exclusivo",
+    "price": 250.50,
+    "image": "/images/exclusividad.webp"
+  },
+  {
+    "id": 4,
+    "name": "Chaqueta de Diseño Contemporáneo",
+    "price": 180.75,
+    "image": "/images/autenticidad.webp"
+  },
+  {
+    "id": 5,
+    "name": "Conjunto de Lujo",
+    "price": 320.00,
+    "image": "/images/exclusividad.webp"
+  },
+  {
+    "id": 6,
+    "name": "Camisa Fluida",
+    "price": 65.00,
+    "image": "/images/modernidad-liquida.webp"
+  }
+]

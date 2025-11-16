@@ -10,6 +10,7 @@ gsap.registerPlugin(ScrollTrigger)
 export default function ProductCard({ product, index }) {
   const cardRef = useRef(null)
   const imageRef = useRef(null)
+  const contentRef = useRef(null)
   const [isHovered, setIsHovered] = useState(false)
 
   const handleMouseEnter = () => {
@@ -19,7 +20,7 @@ export default function ProductCard({ product, index }) {
       duration: 0.4,
       ease: 'power2.out'
     })
-    gsap.to('.card-content', {
+    gsap.to(contentRef.current, {
       y: -10,
       duration: 0.3,
       ease: 'power2.out'
@@ -33,7 +34,7 @@ export default function ProductCard({ product, index }) {
       duration: 0.4,
       ease: 'power2.out'
     })
-    gsap.to('.card-content', {
+    gsap.to(contentRef.current, {
       y: 0,
       duration: 0.3,
       ease: 'power2.out'
@@ -48,26 +49,18 @@ export default function ProductCard({ product, index }) {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        {/* Product Image */}
+        {/* Product Image - ESTRUCTURA SIMPLIFICADA */}
         <div className="relative overflow-hidden aspect-[3/4]">
           <div 
             ref={imageRef}
-            className="w-full h-full bg-gradient-to-br from-luxury-light-gray to-luxury-gray transition-all duration-300"
-          >
-            <div className="w-full h-full bg-[url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')] bg-cover bg-center opacity-80 group-hover:opacity-100 transition-opacity duration-300"></div>
-          </div>
+            className="w-full h-full bg-cover bg-center opacity-80 group-hover:opacity-100 transition-all duration-300"
+            style={{ backgroundImage: `url(${product.image})` }}
+          />
           
           {/* Hover Overlay */}
           <div className={`absolute inset-0 bg-black/20 transition-opacity duration-300 ${
             isHovered ? 'opacity-100' : 'opacity-0'
           }`}></div>
-          
-          {/* Category Badge */}
-          <div className="absolute top-4 left-4">
-            <span className="bg-luxury-accent text-white px-3 py-1 text-sm font-medium">
-              {product.category}
-            </span>
-          </div>
           
           {/* Quick View Button */}
           <div className={`absolute bottom-4 left-1/2 transform -translate-x-1/2 transition-all duration-300 ${
@@ -80,13 +73,10 @@ export default function ProductCard({ product, index }) {
         </div>
 
         {/* Product Info */}
-        <div className="card-content p-6">
+        <div ref={contentRef} className="p-6">
           <h3 className="text-white text-xl font-semibold mb-2 group-hover:text-luxury-accent transition-colors duration-300">
             {product.name}
           </h3>
-          <p className="text-gray-400 text-sm mb-4 line-clamp-2">
-            {product.description}
-          </p>
           <div className="flex items-center justify-between">
             <span className="text-luxury-accent text-lg font-bold">
               €{product.price}
