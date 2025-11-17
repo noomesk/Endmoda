@@ -212,5 +212,5 @@ yarn install
 
 ---
 
-** ¡ENDModa Hackea la Modaaaaaaaaaaaaaaa reina!**
+** ¡ENDModa Hackea la Modaaaaaaaaaaaaaaa // Desarrollado y optimizado por noomesk/ proy iniciado en 2024 retomado en 2025**
 
