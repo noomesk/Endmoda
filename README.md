@@ -119,7 +119,7 @@ endmoda/
 
 ### Smooth Scrolling
 -  Navegación suave entre secciones
-- ⬆ ScrollToTop animado
+-  ScrollToTop animado
 -  Performance optimizada
 -  ScrollToPlugin integrado
 
