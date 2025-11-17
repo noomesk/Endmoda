@@ -1,10 +1,7 @@
-// Next.js configuration for ModaVista
+// Next.js configuration for ENDModa
 const nextConfig = {
   images: {
     domains: ['images.unsplash.com'],
-  },
-  experimental: {
-    appDir: true,
   },
 }
 
