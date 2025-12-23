@@ -1,5 +1,5 @@
 {
-  "name": "modavista",
+  "name": "endmoda",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -7,8 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "test:db": "node --experimental-vm-modules test-connection.js"
+    "lint": "next lint"
   },
   "dependencies": {
     "clsx": "^2.1.1",
