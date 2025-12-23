@@ -1,38 +1,56 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useParams } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { getProductById } from '../../services/api'
 
 gsap.registerPlugin(ScrollTrigger)
 
 export default function ProductDetailPage() {
   const params = useParams()
+  const router = useRouter()
   const [product, setProduct] = useState(null)
   const [selectedImage, setSelectedImage] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
-    // Load product data
-    fetch('/data/products.json')
-      .then(response => response.json())
-      .then(data => {
-        const foundProduct = data.find(p => p.id === parseInt(params.id))
-        setProduct(foundProduct)
+    const fetchProduct = async () => {
+      try {
+        const data = await getProductById(params.id)
+        if (data && data.data) {
+          setProduct({
+            ...data.data,
+            // Mapear los campos de la API a los que espera el frontend
+            imageUrl: data.data.image,
+            features: [
+              `Categoría: ${data.data.category}`,
+              data.data.inStock ? 'Disponible en stock' : 'Agotado temporalmente'
+            ]
+          })
+        } else {
+          setError('Producto no encontrado')
+        }
+      } catch (err) {
+        console.error('Error cargando producto:', err)
+        setError('Error al cargar el producto')
+      } finally {
         setIsLoading(false)
-      })
-      .catch(error => {
-        console.error('Error loading product:', error)
-        setIsLoading(false)
-      })
+      }
+    }
+
+    if (params.id) {
+      fetchProduct()
+    }
   }, [params.id])
 
   useEffect(() => {
     if (!product) return
 
-    // Page entrance animations
+    // Animaciones existentes
     gsap.fromTo('.product-title', 
       { opacity: 0, y: 50 },
       { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }
@@ -52,7 +70,6 @@ export default function ProductDetailPage() {
       { opacity: 0, y: 30 },
       { opacity: 1, y: 0, duration: 0.6, delay: 0.7, ease: 'power2.out' }
     )
-
   }, [product])
 
   if (isLoading) {
@@ -66,11 +83,11 @@ export default function ProductDetailPage() {
     )
   }
 
-  if (!product) {
+  if (error || !product) {
     return (
       <div className="min-h-screen pt-20 flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-white mb-4">Producto no encontrado</h1>
+          <h1 className="text-4xl font-bold text-white mb-4">{error || 'Producto no encontrado'}</h1>
           <Link href="/products" className="text-luxury-accent hover:text-luxury-accent-light">
             Volver a productos
           </Link>
@@ -79,6 +96,7 @@ export default function ProductDetailPage() {
     )
   }
 
+  // Usar la imagen del producto como principal y agregar imágenes de ejemplo si es necesario
   const images = [
     product.imageUrl,
     '/images/product-2.jpg',
@@ -101,7 +119,10 @@ export default function ProductDetailPage() {
           {/* Product Images */}
           <div className="space-y-4">
             <div className="product-image aspect-[3/4] bg-luxury-gray rounded-sm overflow-hidden">
-              <div className="w-full h-full bg-[url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')] bg-cover bg-center"></div>
+              <div 
+                className="w-full h-full bg-cover bg-center"
+                style={{ backgroundImage: `url(${product.imageUrl})` }}
+              ></div>
             </div>
             
             <div className="grid grid-cols-3 gap-4">
@@ -113,7 +134,10 @@ export default function ProductDetailPage() {
                     selectedImage === index ? 'border-luxury-accent' : 'border-transparent'
                   }`}
                 >
-                  <div className="w-full h-full bg-[url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80')] bg-cover bg-center"></div>
+                  <div 
+                    className="w-full h-full bg-cover bg-center"
+                    style={{ backgroundImage: `url(${image})` }}
+                  ></div>
                 </button>
               ))}
             </div>
@@ -127,22 +151,22 @@ export default function ProductDetailPage() {
               </h1>
               <div className="flex items-center space-x-4 mb-6">
                 <span className="text-luxury-accent text-3xl font-bold">
-                  €{product.price}
+                  ${product.price.toFixed(2)}
                 </span>
                 <span className="bg-luxury-accent text-white px-3 py-1 text-sm font-medium rounded">
-                  {product.category}
+                  {product.category || 'Sin categoría'}
                 </span>
               </div>
             </div>
 
             <div>
               <p className="text-gray-300 text-lg leading-relaxed">
-                {product.description}
+                {product.description || 'Descripción no disponible.'}
               </p>
             </div>
 
             <div className="feature-list">
-              <h3 className="text-white text-xl font-semibold mb-4">Características:</h3>
+              <h3 className="text-white text-xl font-semibold mb-4">Detalles:</h3>
               <ul className="space-y-2">
                 {product.features.map((feature, index) => (
                   <li key={index} className="text-gray-300 flex items-center">
@@ -156,8 +180,11 @@ export default function ProductDetailPage() {
             </div>
 
             <div className="space-y-4">
-              <button className="w-full bg-luxury-accent hover:bg-luxury-accent-light text-white py-4 text-lg font-semibold rounded-none transition-all duration-300 hover:scale-105">
-                Añadir al Carrito
+              <button 
+                className="w-full bg-luxury-accent hover:bg-luxury-accent-light text-white py-4 text-lg font-semibold rounded-none transition-all duration-300 hover:scale-105"
+                disabled={!product.inStock}
+              >
+                {product.inStock ? 'Añadir al Carrito' : 'Agotado'}
               </button>
               <button className="w-full border border-luxury-accent text-luxury-accent hover:bg-luxury-accent hover:text-white py-4 text-lg font-semibold rounded-none transition-all duration-300">
                 Añadir a Favoritos
@@ -175,12 +202,14 @@ export default function ProductDetailPage() {
                   <span className="text-white ml-2">30 días</span>
                 </div>
                 <div>
-                  <span className="text-gray-400">Garantía:</span>
-                  <span className="text-white ml-2">2 años</span>
+                  <span className="text-gray-400">Disponibilidad:</span>
+                  <span className={`ml-2 ${product.inStock ? 'text-green-400' : 'text-red-400'}`}>
+                    {product.inStock ? 'En stock' : 'Agotado'}
+                  </span>
                 </div>
                 <div>
-                  <span className="text-gray-400">Tallas:</span>
-                  <span className="text-white ml-2">XS - XL</span>
+                  <span className="text-gray-400">Categoría:</span>
+                  <span className="text-white ml-2">{product.category || 'No especificada'}</span>
                 </div>
               </div>
             </div>

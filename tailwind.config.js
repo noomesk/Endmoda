@@ -1,4 +1,4 @@
-// Tailwind CSS configuration for ModaVista
+// Tailwind CSS configuration for EndModa
 module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -10,8 +10,8 @@ module.exports = {
       fontFamily: {
         'sans': ['Inter', 'Helvetica Neue', 'system-ui', 'sans-serif'],
         'luxury': ['Didot', 'serif'],
-        'title': ['Oswald', 'sans-serif'], // <-- NUEVO: Nuestra fuente de títulos
-        'body': ['Lora', 'serif'],      // <-- NUEVO: Nuestra fuente de texto
+        'title': ['Oswald', 'sans-serif'],
+        'body': ['Lora', 'serif'],
       },
       colors: {
         'luxury': {
@@ -19,9 +19,12 @@ module.exports = {
           'gray': '#1a1a1a',
           'light-gray': '#2a2a2a',
           'white': '#fafafa',
-          'accent': '#e11d48', // rose-600
-          'accent-light': '#f43f5e', // rose-500
-        }
+          'accent': '#e11d48',
+          'accent-light': '#f43f5e',
+        },
+        // Añadiendo los colores primarios sin sobrescribir los existentes
+        'primary': '#2563eb',
+        'secondary': '#1e40af',
       },
       animation: {
         'fade-in': 'fadeIn 0.6s ease-out',

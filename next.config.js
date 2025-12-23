@@ -1,7 +1,7 @@
 // next.config.cjs para EndModa
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Configuración de Next.js
-};
+  // tu configuración aquí
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig
