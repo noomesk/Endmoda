@@ -6,7 +6,7 @@ import { Lora } from 'next/font/google';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import GSAPProvider from '../components/GSAPProvider';
-import { ProductProvider } from './context/ProductContext';
+import { ProductProvider } from '../context/ProductContext';  // Cambiada la ruta
 
 const inter = Inter({ subsets: ['latin'] });
 const oswald = Oswald({ subsets: ['latin'], weight: ['600', '700'] });

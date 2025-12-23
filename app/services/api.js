@@ -3,12 +3,14 @@ import axios from 'axios';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api';
 
-export const getProducts = async ({ category, limit } = {}) => {
+export const getProducts = async (filters = {}) => {
   try {
+    const { category, limit } = filters;
     const params = new URLSearchParams();
+    
     if (category) params.append('category', category);
     if (limit) params.append('limit', limit);
-    
+
     const response = await axios.get(`${API_URL}/products?${params.toString()}`);
     return response.data;
   } catch (error) {

@@ -1,8 +1,7 @@
-// app/context/ProductContext.js
 'use client';
 
 import { createContext, useContext, useState, useEffect } from 'react';
-import { getProducts } from '../services/api';
+import { getProducts } from '../app/services/api';
 
 const ProductContext = createContext();
 
