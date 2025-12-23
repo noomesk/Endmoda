@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test:db": "node -r esm test-connection.js"
+    "test:db": "node --experimental-vm-modules test-connection.js"
   },
   "dependencies": {
     "clsx": "^2.1.1",
