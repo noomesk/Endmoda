@@ -1,19 +1,18 @@
-'use client' // <-- IMPORTANTE: ¡Este componente ahora es del cliente!
+'use client'
 
 import HeroSection from '../components/HeroSection'
 import VideoCinemaSection from '../components/VideoCinemaSection'
 import ProductGrid from '../components/ProductGrid'
+import ProductList from '../components/ProductList' // <-- Añadido
 import ScrollToTop from '../components/ScrollToTop'
 import Image from 'next/image'
-import { useRef } from 'react' // <-- NUEVO: Importamos useRef
+import { useRef } from 'react'
 
 export default function Home() {
-  // <-- NUEVO: Se creó una referencia para cada imagen
   const modernidadImageRef = useRef(null)
   const autenticidadImageRef = useRef(null)
   const exclusividadImageRef = useRef(null)
 
-  // <-- NUEVO: La lógica del efecto 3D Tilt, el efecto super cooooool
   const handleMouseMove = (e, imageRef) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -48,9 +47,24 @@ export default function Home() {
       {/* Video Cinema Section */}
       <VideoCinemaSection />
 
-      {/* Products Section */}
+      {/* Products Section - Original */}
       <section id="productos" className="py-20">
         <ProductGrid />
+      </section>
+
+      {/* New Products Section from API */}
+      <section className="py-20 bg-luxury-gray">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-6xl font-title font-semibold uppercase tracking-wider text-white mb-6">
+              Nuestra Colección
+            </h2>
+            <p className="text-gray-300 text-lg max-w-2xl mx-auto font-body">
+              Descubre nuestra exclusiva colección de moda sostenible
+            </p>
+          </div>
+          <ProductList />
+        </div>
       </section>
 
       {/* Collection Section - CON EFECTO 3D TILT AISLADO */}
@@ -78,7 +92,7 @@ export default function Home() {
                   style={{ backgroundImage: `url('/images/modernidad-liquida.webp')` }}
                 />
                 <Image
-                  ref={modernidadImageRef} // <-- NUEVO: aki se conecta la referencia
+                  ref={modernidadImageRef}
                   src="/images/modernidad-liquida.webp"
                   alt="Modernidad líquida - Piezas atemporales"
                   fill
@@ -107,7 +121,7 @@ export default function Home() {
                   style={{ backgroundImage: `url('/images/autenticidad.webp')` }}
                 />
                 <Image
-                  ref={autenticidadImageRef} // <-- NUEVO: aki se conecta la referencia jjeje
+                  ref={autenticidadImageRef}
                   src="/images/autenticidad.webp"
                   alt="Autenticidad - Diseño contemporáneo"
                   fill
@@ -136,7 +150,7 @@ export default function Home() {
                   style={{ backgroundImage: `url('/images/exclusividad.webp')` }}
                 />
                 <Image
-                  ref={exclusividadImageRef} // <-- NUEVO: aki se conecta la referencia jjuj
+                  ref={exclusividadImageRef}
                   src="/images/exclusividad.webp"
                   alt="Exclusividad - Piezas únicas"
                   fill
