@@ -3,7 +3,6 @@
 import HeroSection from '../components/HeroSection'
 import VideoCinemaSection from '../components/VideoCinemaSection'
 import ProductGrid from '../components/ProductGrid'
-import ProductList from '../components/ProductList' // <-- Añadido
 import ScrollToTop from '../components/ScrollToTop'
 import Image from 'next/image'
 import { useRef } from 'react'
@@ -47,13 +46,8 @@ export default function Home() {
       {/* Video Cinema Section */}
       <VideoCinemaSection />
 
-      {/* Products Section - Original */}
-      <section id="productos" className="py-20">
-        <ProductGrid />
-      </section>
-
       {/* New Products Section from API */}
-      <section className="py-20 bg-luxury-gray">
+      <section id="productos" className="py-20 bg-luxury-gray">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-6xl font-title font-semibold uppercase tracking-wider text-white mb-6">
@@ -63,7 +57,7 @@ export default function Home() {
               Descubre nuestra exclusiva colección de moda sostenible
             </p>
           </div>
-          <ProductList />
+          <ProductGrid />
         </div>
       </section>
 

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { gsap } from 'gsap'
@@ -17,12 +17,24 @@ export default function ProductDetailPage() {
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
 
+  const productCacheRef = useRef(new Map())
+
   useEffect(() => {
     const fetchProduct = async () => {
       try {
+        setError(null)
+
+        const cached = productCacheRef.current.get(params.id)
+        if (cached) {
+          setProduct(cached)
+          setIsLoading(false)
+          return
+        }
+
+        setIsLoading(true)
         const data = await getProductById(params.id)
-        if (data && data.data) {
-          setProduct({
+        if (data?.success && data?.data) {
+          const mappedProduct = {
             ...data.data,
             // Mapear los campos de la API a los que espera el frontend
             imageUrl: data.data.image,
@@ -30,12 +42,15 @@ export default function ProductDetailPage() {
               `Categoría: ${data.data.category}`,
               data.data.inStock ? 'Disponible en stock' : 'Agotado temporalmente'
             ]
-          })
+          }
+          productCacheRef.current.set(params.id, mappedProduct)
+          setProduct(mappedProduct)
         } else {
-          setError('Producto no encontrado')
+          setError(data?.error || 'Producto no encontrado')
         }
       } catch (err) {
         console.error('Error cargando producto:', err)
+
         setError('Error al cargar el producto')
       } finally {
         setIsLoading(false)
@@ -50,26 +65,30 @@ export default function ProductDetailPage() {
   useEffect(() => {
     if (!product) return
 
-    // Animaciones existentes
-    gsap.fromTo('.product-title', 
-      { opacity: 0, y: 50 },
-      { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }
-    )
+    const ctx = gsap.context(() => {
+      // Animaciones existentes
+      gsap.fromTo('.product-title', 
+        { opacity: 0, y: 50 },
+        { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }
+      )
 
-    gsap.fromTo('.product-image', 
-      { opacity: 0, scale: 0.9 },
-      { opacity: 1, scale: 1, duration: 1, delay: 0.3, ease: 'power2.out' }
-    )
+      gsap.fromTo('.product-image', 
+        { opacity: 0, scale: 0.9 },
+        { opacity: 1, scale: 1, duration: 1, delay: 0.3, ease: 'power2.out' }
+      )
 
-    gsap.fromTo('.product-details', 
-      { opacity: 0, x: 50 },
-      { opacity: 1, x: 0, duration: 0.8, delay: 0.5, ease: 'power2.out' }
-    )
+      gsap.fromTo('.product-details', 
+        { opacity: 0, x: 50 },
+        { opacity: 1, x: 0, duration: 0.8, delay: 0.5, ease: 'power2.out' }
+      )
 
-    gsap.fromTo('.feature-list', 
-      { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 0.6, delay: 0.7, ease: 'power2.out' }
-    )
+      gsap.fromTo('.feature-list', 
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.6, delay: 0.7, ease: 'power2.out' }
+      )
+    })
+
+    return () => ctx.revert()
   }, [product])
 
   if (isLoading) {
