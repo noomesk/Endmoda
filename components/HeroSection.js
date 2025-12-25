@@ -12,6 +12,13 @@ export default function HeroSection() {
   const subtitleRef = useRef(null)
   const ctaRef = useRef(null)
 
+  const handleExploreClick = () => {
+    const section = document.getElementById('productos')
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   useEffect(() => {
     // --- Definimos las funciones en el ámbito principal del useEffect ---
     const handleMouseMove = (e) => {
@@ -153,7 +160,10 @@ export default function HeroSection() {
           Descubre una nueva dimensión de la moda digital.
         </p>
         <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button className="bg-luxury-accent hover:bg-luxury-accent-light text-white px-8 py-4 text-lg rounded-none transition-all duration-300 hover:scale-105 hover:shadow-lg">
+          <button
+            onClick={handleExploreClick}
+            className="bg-luxury-accent hover:bg-luxury-accent-light text-white px-8 py-4 text-lg rounded-none transition-all duration-300 hover:scale-105 hover:shadow-lg"
+          >
             Explorar Colección
           </button>
         </div>

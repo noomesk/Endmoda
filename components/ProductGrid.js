@@ -1,25 +1,18 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import ProductCard from './ProductCard'
+import { useProducts } from '../context/ProductContext'
 
 gsap.registerPlugin(ScrollTrigger)
 
 export default function ProductGrid() {
-  const [products, setProducts] = useState([])
+  const { products, loading, error } = useProducts()
 
   useEffect(() => {
-    // Load products from JSON file
-    fetch('/data/products.json')
-      .then(response => response.json())
-      .then(data => setProducts(data))
-      .catch(error => console.error('Error loading products:', error))
-  }, [])
-
-  useEffect(() => {
-    if (products.length === 0) return
+    if (!products || products.length === 0) return
 
     // Animate section title
     gsap.fromTo('.section-title', 
@@ -57,12 +50,38 @@ export default function ProductGrid() {
 
   }, [products])
 
-  if (products.length === 0) {
+  if (loading) {
     return (
       <div className="container mx-auto px-6">
         <div className="text-center">
           <div className="inline-block animate-spin rounded-full h-32 w-32 border-b-2 border-luxury-accent"></div>
           <p className="text-gray-300 mt-4">Cargando productos...</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="container mx-auto px-6">
+        <div className="text-center py-8 text-red-500">
+          {error}
+          <button
+            onClick={() => window.location.reload()}
+            className="ml-4 px-4 py-2 bg-blue-500 text-white rounded"
+          >
+            Reintentar
+          </button>
+        </div>
+      </div>
+    )
+  }
+
+  if (!products || products.length === 0) {
+    return (
+      <div className="container mx-auto px-6">
+        <div className="text-center py-8 text-gray-300">
+          No hay productos disponibles.
         </div>
       </div>
     )
