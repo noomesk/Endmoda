@@ -1,4 +1,4 @@
-#  ENDModa - Proyecto Completado
+#  ENDModa - Proyecto Completado (listo el frontend y parcialmente el back)
 
 ## Resumen del Proyecto
 
